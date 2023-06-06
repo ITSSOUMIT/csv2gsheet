@@ -41,10 +41,13 @@
             <div class="content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-6 col-sm-12 mb-2">
                             <button type="button" class="btn btn-block btn-success btn-lg" onclick='goto("{{ spreadsheet_id }}")'>Go to Google Sheets</button>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <!-- <div class="col-md-6 col-sm-12 mb-2">
+                            <button type="button" class="btn btn-block btn-outline-success btn-lg" onclick='copy("{{ spreadsheet_id }}")'>Copy Google Sheets Link</button>
+                        </div> -->
+                        <div class="col-md-6 col-sm-12 mb-2">
                             <button type="button" class="btn btn-block btn-outline-primary btn-lg" onclick='home()'>Import another CSV</button>
                         </div>
                     </div>
@@ -74,6 +77,12 @@
 
         function goto(spreadsheet_id){
             window.open().location.href = "https://docs.google.com/spreadsheets/d/" + spreadsheet_id;
+        }
+
+        function copy(spreadsheet_id){
+            var url = "https://docs.google.com/spreadsheets/d/" + spreadsheet_id;
+            navigator.clipboard.writeText(url);
+            alert("Copied to clipboard")
         }
 
         function home(){
