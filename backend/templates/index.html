@@ -2,37 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link  href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>csv2gsheet</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='all.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminlte.min.css') }}">
+
 </head>
 
-<body>
-    <div>
-        <div class="home-container">
-            <h1 class="home-text">csv2gsheet - a unique server side approach</h1>
-            <div class="home-container1">
-                <div class="home-container2">
-                    <h1 class="home-text1">upload csv</h1>
-                    <form class="home-form" method="POST" action="/login" enctype="multipart/form-data">
-                        <input type="text" placeholder="Spreadsheet Name" class="input" name="name" required/>
-                        <input type="file" name="file" class="input" accept=".csv" required/>
-                        <button type="submit" class="home-button button">Import to Google Sheets</button>
-                    </form>
-                </div>
-                <div class="home-container3">
-                    <h1 class="home-text2">import csv from URL</h1>
-                    <form class="home-form1" method="POST" action="/login">
-                        <input type="url" placeholder="Enter URL" class="input" name="url" required/>
-                        <input type="text" placeholder="Spreadsheet Name" class="input" name="name" required/>
-                        <button type="submit" class="home-button button">Import to Google Sheets</button>
-                    </form>
-                </div>
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">csv2gsheet<small></small></h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-primary">A webapp to import CSV to Google Sheets</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
             </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Upload CSV</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form method="POST" action="/login" enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Spreadsheet Name</label>
+                                            <input type="text" class="form-control" name="name" placeholder="Enter name of spreadsheet" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">CSV File</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="file" accept=".csv" id="exampleInputFile" required>
+                                                    <label class="custom-file-label" for="exampleInputFile">Choose CSV File</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Import to Google Sheets</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">CSV from URL</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form method="POST" action="/login" enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Spreadsheet Name</label>
+                                            <input type="text" class="form-control" name="name" placeholder="Enter name of spreadsheet" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">CSV URL</label>
+                                            <input type="text" class="form-control" name="url" placeholder="Enter url of CSV" required>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-success">Import to Google Sheets</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
         </div>
+        <!-- /.content-wrapper -->
     </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ url_for('static', filename='adminlte.min.js') }}"></script>
+
+    <script>
+        document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+            var fileName = document.getElementById("exampleInputFile").files[0].name;
+            var nextSibling = e.target.nextElementSibling
+            nextSibling.innerText = fileName
+        })
+    </script>
 </body>
 
 </html>
