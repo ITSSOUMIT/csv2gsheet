@@ -31,9 +31,6 @@ def login():
         # save the uploaded file to a directory
         file.save(os.path.join('uploads', file.filename))
 
-        # read csv to list
-        df = pd.read_csv(os.path.join('uploads', file.filename), on_bad_lines='skip', header=None)
-
         # save csv to session
         session['file'] = file.filename
 
@@ -43,7 +40,7 @@ def login():
         url = request.form['url']
 
         # read csv to list
-        df = pd.read_csv(url, on_bad_lines='skip', header=None)
+        df = pd.read_csv(url, on_bad_lines='skip', encoding=None, encoding_errors='ignore', header=None)
 
         # save csv to local storage
         df.to_csv(f'uploads/{request.form["name"]}.csv', index=False)
@@ -91,7 +88,7 @@ def callback():
     spreadsheet_id = spreadsheet['spreadsheetId']
 
     csv = session.get('file')
-    df = pd.read_csv(f'uploads/{csv}', on_bad_lines='skip', header=None)
+    df = pd.read_csv(f'uploads/{csv}', on_bad_lines='skip', encoding=None, encoding_errors='ignore', header=None)
     df = df.fillna('')
     
     # Convert DataFrame to list of lists
