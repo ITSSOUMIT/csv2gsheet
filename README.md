@@ -25,8 +25,3 @@ To use the flask app, follow the steps -
 
 #### Direct server link, for chrome extension's backend -
 [http://chrome.soumit.in:5000](http://chrome.soumit.in:5000)
-
-
-#### Additional notes -
-I am not so good frontend developer, so ignore the frontend code.
-Its all barebones, but serves the purpose.
