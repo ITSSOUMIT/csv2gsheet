@@ -109,12 +109,6 @@ def callback():
     # Execute the update request
     create = requestt.execute()
 
-    response = f"""
-    Your CSV is now in Google Sheets!
-    <br>
-    <a href="https://docs.google.com/spreadsheets/d/spreadsheet_id" target="_blank">https://docs.google.com/spreadsheets/d/spreadsheet_id</a>
-    """
-    # return render_template_string(response.replace("spreadsheet_id", spreadsheet_id))
     return render_template('success.html', spreadsheet_id=spreadsheet_id)
 
 
